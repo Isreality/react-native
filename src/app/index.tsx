@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
 import { Platform, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -28,22 +29,29 @@ function getDevMenuHint() {
   );
 }
 
+// const localImage = require('@/assets/images/react-logo.png');
+const image = <Image source={require('@/assets/images/react-logo.png')} style={{ width: 100, height: 100 }} />;
+
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
+          {/* <AnimatedIcon /> */}
+          {image}
           <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
+            Welcome Dante
+          </ThemedText>
+          <ThemedText style={{fontSize: 24}}>
+            The Dark App
           </ThemedText>
         </ThemedView>
 
-        <ThemedText type="code" style={styles.code}>
+        {/* <ThemedText type="code" style={styles.code}>
           get started
-        </ThemedText>
+        </ThemedText> */}
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
+        {/* <ThemedView type="backgroundElement" style={styles.stepContainer}>
           <HintRow
             title="Try editing"
             hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
@@ -53,7 +61,7 @@ export default function HomeScreen() {
             title="Fresh start"
             hint={<ThemedText type="code">npm run reset-project</ThemedText>}
           />
-        </ThemedView>
+        </ThemedView> */}
 
         {Platform.OS === 'web' && <WebBadge />}
       </SafeAreaView>
