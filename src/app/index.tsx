@@ -1,7 +1,8 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Button, Pressable, Text } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter, Link } from 'expo-router';
 
 import { AnimatedIcon } from '@/components/animated-icon';
 import { HintRow } from '@/components/hint-row';
@@ -29,8 +30,8 @@ function getDevMenuHint() {
   );
 }
 
-// const localImage = require('@/assets/images/react-logo.png');
 const image = <Image source={require('@/assets/images/react-logo.png')} style={{ width: 100, height: 100 }} />;
+const router = useRouter();
 
 export default function HomeScreen() {
   return (
@@ -45,23 +46,22 @@ export default function HomeScreen() {
           <ThemedText style={{fontSize: 24}}>
             The Dark App
           </ThemedText>
+
+          <Link href="/login" asChild>
+            {/* <Pressable> */}
+              <ThemedText style={{color: "#ffffff", fontSize: 16}}>Login</ThemedText>
+            {/* </Pressable> */}
+          </Link>
+
+          <Link href="/register" asChild>
+            {/* <Pressable> */}
+              <ThemedText style={{color: "#ffffff", fontSize: 16}}>Register</ThemedText>
+            {/* </Pressable> */}
+          </Link>
+          
+          
+          
         </ThemedView>
-
-        {/* <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText> */}
-
-        {/* <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView> */}
 
         {Platform.OS === 'web' && <WebBadge />}
       </SafeAreaView>
