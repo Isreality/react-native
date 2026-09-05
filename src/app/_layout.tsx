@@ -15,12 +15,11 @@ export default function TabLayout() {
       <AnimatedSplashOverlay />
       <Stack>
         <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
+        <Stack.Screen name='(dashboard)' options={{ headerShown: false }}/>
         <Stack.Screen name='index' options={{ title: 'Home' }}/>
         
-        <AppTabs />
+        {/* <AppTabs /> */}
       </Stack>
-      
-      {/* <AppTabs /> */}
     </ThemeProvider>
   );
 }
