@@ -1,8 +1,9 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet, Button, Pressable, Text } from 'react-native';
+import { Platform, StyleSheet, Button, Pressable, Text, Alert } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Link } from 'expo-router';
+import AppTabs from '@/components/app-tabs';
 
 import { AnimatedIcon } from '@/components/animated-icon';
 import { HintRow } from '@/components/hint-row';
@@ -31,9 +32,26 @@ import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 // }
 
 const image = <Image source={require('@/assets/images/react-logo.png')} style={{ width: 100, height: 100 }} />;
-const router = useRouter();
+// const router = useRouter();
 
 export default function HomeScreen() {
+  const router = useRouter();
+
+   const handleOpenAlert = () => {
+    Alert.alert(
+      "Are you sure you want to proceed?",
+      "",
+      [
+        { text: "Cancel", style: "cancel" },
+        { 
+          text: "Confirm", 
+          style: "destructive", 
+          onPress: () => router.push('/modal') // Navigates on confirm
+        },
+      ]
+    );
+  };
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -58,6 +76,8 @@ export default function HomeScreen() {
           <Link href="/home" asChild>
             <ThemedText style={{color: "#ffffff", fontSize: 16}}>Home Page</ThemedText>  
           </Link> 
+
+          <Button title='Open Alert' onPress={handleOpenAlert}></Button>
           
         </ThemedView>
 

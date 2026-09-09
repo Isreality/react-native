@@ -5,7 +5,7 @@ import { ThemedView } from '@/components/themed-view';
 
 const Home = () => {
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={styles.container} safe= {false}>
       <ThemedText type='title' style={styles.title}>Home</ThemedText>
     </ThemedView>
   )

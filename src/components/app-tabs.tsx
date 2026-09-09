@@ -1,4 +1,4 @@
-import { NativeTabs as OriginalNativeTabs, Icon } from 'expo-router/unstable-native-tabs';
+import { NativeTabs as OriginalNativeTabs, Icon, Badge, Label } from 'expo-router/unstable-native-tabs';
 import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
@@ -18,10 +18,12 @@ export default function AppTabs() {
 
   return (
     <NativeTabs
+      labelVisibilityMode="labeled"
       backgroundColor={colors.background}
       indicatorColor={colors.backgroundElement}
-      // tabBarActiveTintColor={colors.iconColorFocused}
-      labelStyle={{ selected: { color: colors.text } }}>
+      tintColor={colors.iconColorFocused}
+      iconColor={{ default: '#817c7c', selected: '#E60023' }}
+      labelStyle={{ selected: { color: colors.activeText } }}>
       <NativeTabs.Trigger name="home" options={{ title: 'Home'}}>
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <Icon
@@ -40,6 +42,7 @@ export default function AppTabs() {
 
       <NativeTabs.Trigger name="cart" options={{ title: 'Cart'}}>
         <NativeTabs.Trigger.Label>Cart</NativeTabs.Trigger.Label>
+        <Badge>9+</Badge>
         <Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           // renderingMode="template"
@@ -53,6 +56,14 @@ export default function AppTabs() {
           // renderingMode="template"
         />
       </NativeTabs.Trigger>
+
+      {/* <NativeTabs.Trigger name="search" role='search' options={{ title: 'Search'}}>
+        <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
+        <Icon
+          src={require('@/assets/images/tabIcons/explore.png')}
+          // renderingMode="template"
+        />
+      </NativeTabs.Trigger> */}
     </NativeTabs>
   );
 }

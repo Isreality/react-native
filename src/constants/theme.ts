@@ -8,10 +8,11 @@ import '@/global.css';
 import { Platform } from 'react-native';
 
 export const Colors = {
-  primary: 'red',
+  primary: '#E60023',
 
   light: {
     text: '#000000',
+    activeText: '#E60023',
     background: '#ffffff',
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
@@ -22,11 +23,12 @@ export const Colors = {
   },
   dark: {
     text: '#ffffff',
+    activeText: '#E60023',
     background: '#000000',
     backgroundElement: '#212225',
     backgroundSelected: '#2E3135',
     navBackground: '#201e2b',
-    iconColor: '#9591a5',
+    iconColor: '#e5e5e5',
     iconColorFocused: '#ffffff',
     textSecondary: '#B0B4BA',
   },

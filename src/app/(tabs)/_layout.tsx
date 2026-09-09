@@ -5,16 +5,10 @@ import { Stack } from 'expo-router';
 import AppTabs from '@/components/app-tabs';
 
 
-export default function DashboardLayout() {
+export default function TabsLayout() {
   const colorScheme = useColorScheme();
   // const colors = Colors[scheme ?? 'light'];
   return (
-    <AppTabs />
-    // <>
-    //     <Stack>
-    //         <Stack.Screen name='(dashboard)' options={{ headerShown: false }}/>
-    //         <AppTabs />
-    //     </Stack>
-    // </>
+    <AppTabs/>
   );
 }
