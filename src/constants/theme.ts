@@ -1,27 +1,23 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-import '@/global.css';
-
 import { Platform } from 'react-native';
+
 
 export const Colors = {
   primary: '#E60023',
 
   light: {
+    primary: '#E60023',
     text: '#000000',
     activeText: '#E60023',
     background: '#ffffff',
     backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
+    backgroundSelected: '#fafafa',
     navBackground: '#e8e7ef',
     iconColor: '#686477',
     iconColorFocused: '#201e2b',
     textSecondary: '#60646C',
   },
   dark: {
+    primary: '#E60023',
     text: '#ffffff',
     activeText: '#E60023',
     background: '#000000',

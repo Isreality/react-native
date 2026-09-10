@@ -2,16 +2,19 @@ import { StyleSheet, Pressable, PressableProps, StyleProp, ViewStyle } from 'rea
 import React from 'react'
 import { Link } from 'expo-router';
 import { Colors } from '@/constants/theme';
+import { cssInterop } from 'nativewind';
 
 interface ThemedButtonProps extends PressableProps {
   style?: StyleProp<ViewStyle>;
+  className?: string;
 }
 
+cssInterop(Pressable, { className: 'style' });
 
-function ThemedButton ({ style, ...props }: ThemedButtonProps) {
+function ThemedButton ({ style, className, ...props }: ThemedButtonProps) {
   return (  
       <Pressable 
-        // onPress={handleSubmit}
+        className={className}
         style={({pressed}) => [styles.btn, pressed && styles.pressed, style]}
         {...props}
       />
@@ -34,6 +37,7 @@ container: {
     textAlign: 'center',
     padding: 15,
     borderRadius: 5,
+    color: '#ffffff',
   },
   pressed: {
     opacity: 0.8,

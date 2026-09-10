@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
 
