@@ -65,6 +65,10 @@ export default function HomeScreen() {
             The Dark App
           </ThemedText>
 
+          <ThemedText className='text-blue-500 text-2xl'>
+            The Dark App
+          </ThemedText>
+
           <Link href="/login" asChild>
             <ThemedText style={{color: "#ffffff", fontSize: 16}}>Login</ThemedText>
           </Link>

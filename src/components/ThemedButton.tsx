@@ -1,47 +1,27 @@
 import { StyleSheet, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router';
+import { ThemedText } from './themed-text';
 import { Colors } from '@/constants/theme';
-import { cssInterop } from 'nativewind';
+// import { cssInterop } from 'nativewind';
 
 interface ThemedButtonProps extends PressableProps {
   style?: StyleProp<ViewStyle>;
   className?: string;
+  text?: string;
 }
 
-cssInterop(Pressable, { className: 'style' });
+// cssInterop(Pressable, { className: 'style' });
 
-function ThemedButton ({ style, className, ...props }: ThemedButtonProps) {
+export default function ThemedButton ({ style, className, text, ...props }: ThemedButtonProps) {
   return (  
       <Pressable 
-        className={className}
-        style={({pressed}) => [styles.btn, pressed && styles.pressed, style]}
+        className={`bg-blue-500 p-[15px] rounded-[5px] items-center justify-center active:opacity-80 ${className || ''}`}
+        style={style} 
         {...props}
-      />
-    
+      >
+        <ThemedText className="text-text dark:text-text-dark font-semibold text-base">
+          {text}
+        </ThemedText>
+      </Pressable>    
   )
 }
-
-const styles = StyleSheet.create({
-container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  btn: {
-    backgroundColor: Colors.primary,
-    textAlign: 'center',
-    padding: 15,
-    borderRadius: 5,
-    color: '#ffffff',
-  },
-  pressed: {
-    opacity: 0.8,
-  },
-})
-
-export default ThemedButton
