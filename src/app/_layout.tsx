@@ -3,6 +3,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
+import { useFonts } from "expo-font";
+
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import "../../global.css"
@@ -11,6 +13,13 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RouteLayout() {
   const colorScheme = useColorScheme();
+  
+  const [loaded, error] = useFonts({
+    "Satoshi-Regular": require("../../assets/fonts/Satoshi-Regular.otf"),
+    "Satoshi-Medium": require("../../assets/fonts/Satoshi-Medium.otf"),
+    "Satoshi-Bold": require("../../assets/fonts/Satoshi-Bold.otf"),
+  });
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AnimatedSplashOverlay />

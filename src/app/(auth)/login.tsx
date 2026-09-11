@@ -24,9 +24,9 @@ const Login = () => {
         style={{ paddingBottom: 50 + 16 }}
       >
         
-        <ThemedText type="default" className="text-center text-xl mb-2 text-text dark:text-text-dark font-bold">
-          Login to your Account
-        </ThemedText>
+        <Text className="text-satoshi-bold text-primary text-center text-3xl mb-2 text-text dark:text-text-dark font-bold">
+          Login
+        </Text>
 
         <ThemedTextInput
           className="w-[80%] mb-5"
