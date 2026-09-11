@@ -1,9 +1,11 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { View, useColorScheme as useDeviceColorScheme } from 'react-native';
+import { useColorScheme } from 'nativewind'; 
 import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
 import { useFonts } from "expo-font";
+import { useEffect } from 'react';
 
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
@@ -12,36 +14,69 @@ import "../../global.css"
 SplashScreen.preventAutoHideAsync();
 
 export default function RouteLayout() {
-  const colorScheme = useColorScheme();
-  
+  // const colorScheme = useColorScheme();
+  const { colorScheme, setColorScheme } = useColorScheme();
+  const systemDeviceScheme = useDeviceColorScheme();
+  useEffect(() => {
+    if (systemDeviceScheme) {
+      setColorScheme(systemDeviceScheme);
+    }
+  }, [systemDeviceScheme]);
+
   const [loaded, error] = useFonts({
     "Satoshi-Regular": require("../../assets/fonts/Satoshi-Regular.otf"),
     "Satoshi-Medium": require("../../assets/fonts/Satoshi-Medium.otf"),
     "Satoshi-Bold": require("../../assets/fonts/Satoshi-Bold.otf"),
+    "Satoshi-Black": require("../../assets/fonts/Satoshi-Black.otf"),
   });
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <StatusBar style='auto'/>
-      <Stack>
-        <Stack.Screen name='index' options={{ headerShown: false }}/>
-        <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }}/>
-        <Stack.Screen
-          name="modal"
-          options={{
-            presentation: 'card',
-            sheetAllowedDetents: [0.25, 0.5, 1],
-            sheetInitialDetentIndex: 0,
-            sheetGrabberVisible: true,
-            sheetCornerRadius: 24,
-            sheetLargestUndimmedDetentIndex: 1,
-          }}
-        />        
-      </Stack>
-      
-    </ThemeProvider>
-    
+    <View className={`flex-1 ${colorScheme === 'dark' ? 'dark' : ''}`}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <AnimatedSplashOverlay />
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+        <Stack>
+          <Stack.Screen name='index' options={{ headerShown: false }}/>
+          <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }}/>
+          <Stack.Screen
+            name="modal"
+            options={{
+              presentation: 'card',
+              sheetAllowedDetents: [0.25, 0.5, 1],
+              sheetInitialDetentIndex: 0,
+              sheetGrabberVisible: true,
+              sheetCornerRadius: 24,
+              sheetLargestUndimmedDetentIndex: 1,
+            }}
+          />        
+        </Stack>
+      </ThemeProvider>
+    </View>
   );
+
+  // return (
+  //   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+  //     <AnimatedSplashOverlay />
+  //     <StatusBar style='auto'/>
+  //     <Stack>
+  //       <Stack.Screen name='index' options={{ headerShown: false }}/>
+  //       <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
+  //       <Stack.Screen name='(tabs)' options={{ headerShown: false }}/>
+  //       <Stack.Screen
+  //         name="modal"
+  //         options={{
+  //           presentation: 'card',
+  //           sheetAllowedDetents: [0.25, 0.5, 1],
+  //           sheetInitialDetentIndex: 0,
+  //           sheetGrabberVisible: true,
+  //           sheetCornerRadius: 24,
+  //           sheetLargestUndimmedDetentIndex: 1,
+  //         }}
+  //       />        
+  //     </Stack>
+      
+  //   </ThemeProvider>
+    
+  // );
 }

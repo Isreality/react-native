@@ -11,11 +11,11 @@ interface ThemedButtonProps extends PressableProps {
 export default function ThemedButton ({ style, className, text, ...props }: ThemedButtonProps) {
   return (  
       <Pressable 
-        className={`bg-primary p-[15px] rounded-[5px] items-center justify-center active:opacity-80 ${className || ''}`}
+        className={`bg-primary p-[12px] rounded-full w-full items-center justify-center active:opacity-80 ${className || ''}`}
         style={style} 
         {...props}
       >
-        <Text className="text-buttonText">
+        <Text className="font-satoshi-bold text-buttonText text-lg">
           {text}
         </Text>
       </Pressable>    

@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Link } from 'expo-router';
 import AppTabs from '@/components/app-tabs';
 
+import Login from './(auth)/login'
 import { AnimatedIcon } from '@/components/animated-icon';
 import { HintRow } from '@/components/hint-row';
 import { ThemedText } from '@/components/themed-text';
@@ -53,41 +54,43 @@ export default function HomeScreen() {
   };
 
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          {/* <AnimatedIcon /> */}
-          {image}
-          <ThemedText type="title" style={styles.title}>
-            Welcome Dante
-          </ThemedText>
-          <ThemedText style={{fontSize: 24}}>
-            The Dark App
-          </ThemedText>
 
-          <ThemedText className='text-blue-500 text-2xl'>
-            The Dark App
-          </ThemedText>
+    <Login/>
+    // <ThemedView style={styles.container}>
+    //   <SafeAreaView style={styles.safeArea}>
+    //     <Login/>
+    //     {/* <ThemedView style={styles.heroSection}>
+    //       {image}
+    //       <ThemedText type="title" style={styles.title}>
+    //         Welcome Dante
+    //       </ThemedText>
+    //       <ThemedText style={{fontSize: 24}}>
+    //         The Dark App
+    //       </ThemedText>
 
-          <Link href="/login" asChild>
-            <ThemedText style={{color: "#ffffff", fontSize: 16}}>Login</ThemedText>
-          </Link>
+    //       <ThemedText className='text-blue-500 text-2xl'>
+    //         The Dark App
+    //       </ThemedText>
 
-          <Link href="/register" asChild>
-            <ThemedText style={{color: "#ffffff", fontSize: 16}}>Register</ThemedText>  
-          </Link>
+    //       <Link href="/login" asChild>
+    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Login</ThemedText>
+    //       </Link>
 
-          <Link href="/home" asChild>
-            <ThemedText style={{color: "#ffffff", fontSize: 16}}>Home Page</ThemedText>  
-          </Link> 
+    //       <Link href="/register" asChild>
+    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Register</ThemedText>  
+    //       </Link>
 
-          <Button title='Open Alert' onPress={handleOpenAlert}></Button>
+    //       <Link href="/home" asChild>
+    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Home Page</ThemedText>  
+    //       </Link> 
+
+    //       <Button title='Open Alert' onPress={handleOpenAlert}></Button>
           
-        </ThemedView>
+    //     </ThemedView> */}
 
-        {/* {Platform.OS === 'web' && <WebBadge />} */}
-      </SafeAreaView>
-    </ThemedView>
+    //     {/* {Platform.OS === 'web' && <WebBadge />} */}
+    //   </SafeAreaView>
+    // </ThemedView>
   );
 }
 

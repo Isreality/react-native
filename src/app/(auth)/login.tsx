@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Pressable, View, Button, Text } from 'react-native';
+import { Pressable, View, Button, Text, useColorScheme } from 'react-native';
 import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors } from '@/constants/theme';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -13,23 +14,23 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+
   const handleSubmit = () => {
     alert('Form submitted successfully');
   };
 
   return (
-    <ThemedView className="flex-1 justify-center bg-background dark:bg-background-dark">
-      <SafeAreaView 
-        className="flex-1 px-6 items-center gap-4 max-w-[800px] w-full mx-auto"
-        style={{ paddingBottom: 50 + 16 }}
-      >
+    <ThemedView className="flex-1 bg-background dark:bg-background-dark">
+      <SafeAreaView className="flex-1 px-6 items-center gap-4 max-w-[900px] w-full mt-10">
         
-        <Text className="text-satoshi-bold text-primary text-center text-3xl mb-2 text-text dark:text-text-dark font-bold">
-          Login
+        <Text className="font-satoshi-bold text-primary text-center text-2xl mb-2 text-text dark:text-text-dark">
+          Sign In
         </Text>
 
         <ThemedTextInput
-          className="w-[80%] mb-5"
+          label="Email Address"
           placeholder="example@gmail.com"
           keyboardType="email-address"
           onChangeText={setEmail}
@@ -37,7 +38,7 @@ const Login = () => {
         />
 
         <ThemedTextInput
-          className="w-[80%] mb-5"
+          label="Password"
           placeholder="Enter password"
           secureTextEntry 
           onChangeText={setPassword}
@@ -45,14 +46,16 @@ const Login = () => {
         />
 
         <ThemedButton onPress={handleSubmit} className="" text="Login"/>
-
-        <Link href="/register" asChild>        
-          <Pressable className="mt-2">
-            <ThemedText className="text-blue-500 text-textSecondary dark:text-textSecondary-dark text-sm">
-              Register Instead
-            </ThemedText>
-          </Pressable>
-        </Link>
+      
+        <Text 
+          style={{ 
+            color: colors.text 
+          }} 
+          className="font-satoshi-medium text-lg">
+          Don't have an account?{" "} 
+          <Link href="/register" className='font-satoshi-bold text-primary'>Create Account</Link>
+        </Text>
+        
 
       </SafeAreaView>
     </ThemedView>

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, TextInputProps, useColorScheme } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TextInputProps, useColorScheme } from 'react-native'
 import React from 'react'
 
 import { Colors } from '@/constants/theme';
@@ -6,26 +6,41 @@ import { Colors } from '@/constants/theme';
 
 
 interface ThemedTextInputProps extends TextInputProps {
-  // You can add custom props here if needed in the future
+  label?: string;
 }
 
-const ThemedTextInput: React.FC<ThemedTextInputProps> = ({ style, ...props }) => {
+const ThemedTextInput: React.FC<ThemedTextInputProps> = ({ style, label, ...props }) => {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
 
   return (
-    <TextInput
-      {...props}
-      style={[
-        {
-          backgroundColor: colors.backgroundSelected,
-          color: colors.text,
-          padding: 20,
-          borderRadius: 6,
-        },
-        style,
-      ]}
-    />
+    <View style={{ width: '100%', flexDirection: 'column', gap: 10 }}>
+      
+      {label && (
+        <Text 
+        style={{ 
+          fontFamily: 'Satoshi-Medium', 
+          fontSize: 14, 
+          color: colors.text 
+        }}
+        >
+          {label}
+        </Text>
+      )}
+      
+      <TextInput
+        {...props}
+        style={[
+          {
+            backgroundColor: colors.backgroundSelected,
+            color: colors.text,
+            padding: 20,
+            borderRadius: 6,
+          },
+          style,
+        ]}
+      />
+    </View>
   )
 }
 
