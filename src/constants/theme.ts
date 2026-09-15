@@ -5,8 +5,8 @@ export const Colors = {
 
   light: {
     primary: '#E60023',
-    text: '#000000',
-    activeText: '#E60023',
+    text: '#646464',
+    activeText: '#Eb1c26',
     background: '#ffffff',
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#fafafa',

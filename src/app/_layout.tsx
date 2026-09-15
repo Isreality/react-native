@@ -1,40 +1,81 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
-import { View, useColorScheme as useDeviceColorScheme } from 'react-native';
+import { ActivityIndicator, View, useColorScheme as useDeviceColorScheme } from 'react-native';
 import { useColorScheme } from 'nativewind'; 
 import { StatusBar } from 'expo-status-bar';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { useFonts } from "expo-font";
 import { useEffect } from 'react';
 
-
+// 1. Import your AuthProvider here
+import { AuthProvider, useAuth } from '@/context/AuthProvider'; 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import "../../global.css"
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RouteLayout() {
-  // const colorScheme = useColorScheme();
+function RootNavigation() {
+    const { session, loading } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (loading) return;
+
+        if (session?.user) {
+            router.replace('/home');
+        } else {
+            router.replace('/');
+        }
+    }, [session, loading]);
+
+    if (loading) {
+        return (
+            <View className="flex-1 justify-center items-center">
+                <ActivityIndicator color={"blue"} size={"large"} />
+            </View>
+        );
+    }
+
+    return null; 
+}
+
+// fonts, and dark mode theme
+function RouteLayoutContent() {
   const { colorScheme, setColorScheme } = useColorScheme();
   const systemDeviceScheme = useDeviceColorScheme();
-  useEffect(() => {
-    if (systemDeviceScheme) {
-      setColorScheme(systemDeviceScheme);
-    }
-  }, [systemDeviceScheme]);
 
-  const [loaded, error] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     "Satoshi-Regular": require("../../assets/fonts/Satoshi-Regular.otf"),
     "Satoshi-Medium": require("../../assets/fonts/Satoshi-Medium.otf"),
     "Satoshi-Bold": require("../../assets/fonts/Satoshi-Bold.otf"),
     "Satoshi-Black": require("../../assets/fonts/Satoshi-Black.otf"),
   });
 
+  useEffect(() => {
+    if (systemDeviceScheme) {
+      setColorScheme(systemDeviceScheme);
+    }
+  }, [systemDeviceScheme]);
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <View className={`flex-1 ${colorScheme === 'dark' ? 'dark' : ''}`}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {/* Inside AuthProvider, useAuth can now be safely called here */}
+        <RootNavigation />
+        
         <AnimatedSplashOverlay />
         <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+        
         <Stack>
           <Stack.Screen name='index' options={{ headerShown: false }}/>
           <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
@@ -54,6 +95,18 @@ export default function RouteLayout() {
       </ThemeProvider>
     </View>
   );
+}
+
+// 3. Export this wrapper component as default so Expo Router sets up the context first
+export default function RouteLayout() {
+    return (
+        <AuthProvider>
+            <RouteLayoutContent />
+        </AuthProvider>
+    );
+}
+
+
 
   // return (
   //   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -79,4 +132,4 @@ export default function RouteLayout() {
   //   </ThemeProvider>
     
   // );
-}
+

@@ -38,94 +38,24 @@ const image = <Image source={require('@/assets/images/react-logo.png')} style={{
 export default function HomeScreen() {
   const router = useRouter();
 
-   const handleOpenAlert = () => {
-    Alert.alert(
-      "Are you sure you want to proceed?",
-      "",
-      [
-        { text: "Cancel", style: "cancel" },
-        { 
-          text: "Confirm", 
-          style: "destructive", 
-          onPress: () => router.push('/modal') // Navigates on confirm
-        },
-      ]
-    );
-  };
+  //  const handleOpenAlert = () => {
+  //   Alert.alert(
+  //     "Are you sure you want to proceed?",
+  //     "",
+  //     [
+  //       { text: "Cancel", style: "cancel" },
+  //       { 
+  //         text: "Confirm", 
+  //         style: "destructive", 
+  //         onPress: () => router.push('/modal') // Navigates on confirm
+  //       },
+  //     ]
+  //   );
+  // };
 
   return (
-
     <Login/>
-    // <ThemedView style={styles.container}>
-    //   <SafeAreaView style={styles.safeArea}>
-    //     <Login/>
-    //     {/* <ThemedView style={styles.heroSection}>
-    //       {image}
-    //       <ThemedText type="title" style={styles.title}>
-    //         Welcome Dante
-    //       </ThemedText>
-    //       <ThemedText style={{fontSize: 24}}>
-    //         The Dark App
-    //       </ThemedText>
-
-    //       <ThemedText className='text-blue-500 text-2xl'>
-    //         The Dark App
-    //       </ThemedText>
-
-    //       <Link href="/login" asChild>
-    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Login</ThemedText>
-    //       </Link>
-
-    //       <Link href="/register" asChild>
-    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Register</ThemedText>  
-    //       </Link>
-
-    //       <Link href="/home" asChild>
-    //         <ThemedText style={{color: "#ffffff", fontSize: 16}}>Home Page</ThemedText>  
-    //       </Link> 
-
-    //       <Button title='Open Alert' onPress={handleOpenAlert}></Button>
-          
-    //     </ThemedView> */}
-
-    //     {/* {Platform.OS === 'web' && <WebBadge />} */}
-    //   </SafeAreaView>
-    // </ThemedView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-});
+const styles = StyleSheet.create({ });

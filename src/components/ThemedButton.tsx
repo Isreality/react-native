@@ -8,7 +8,7 @@ interface ThemedButtonProps extends PressableProps {
 }
 
 
-export default function ThemedButton ({ style, className, text, ...props }: ThemedButtonProps) {
+const ThemedButton = ({ style, className, text, ...props }: ThemedButtonProps) => {
   return (  
       <Pressable 
         className={`bg-primary p-[12px] rounded-full w-full items-center justify-center active:opacity-80 ${className || ''}`}
@@ -21,3 +21,7 @@ export default function ThemedButton ({ style, className, text, ...props }: Them
       </Pressable>    
   )
 }
+
+// ThemedButton.displayName = 'ThemedButton';
+
+export default ThemedButton;

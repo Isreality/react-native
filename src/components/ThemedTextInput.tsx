@@ -12,6 +12,7 @@ interface ThemedTextInputProps extends TextInputProps {
 const ThemedTextInput: React.FC<ThemedTextInputProps> = ({ style, label, ...props }) => {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const placeholderColor = colorScheme === 'dark' ? '#666666' : '#c4c4c4';
 
   return (
     <View style={{ width: '100%', flexDirection: 'column', gap: 10 }}>
@@ -30,6 +31,7 @@ const ThemedTextInput: React.FC<ThemedTextInputProps> = ({ style, label, ...prop
       
       <TextInput
         {...props}
+        placeholderTextColor={placeholderColor}
         style={[
           {
             backgroundColor: colors.backgroundSelected,

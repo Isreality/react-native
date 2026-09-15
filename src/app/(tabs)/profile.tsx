@@ -1,12 +1,23 @@
-import { StyleSheet } from 'react-native'
+import { Button, StyleSheet } from 'react-native'
 import React from 'react'
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useAuth } from '@/context/AuthProvider';
 
 const Profile = () => {
+  const { signOut } = useAuth() || {};
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <ThemedView style={styles.container}>
       <ThemedText type='title' style={styles.title}>Profile</ThemedText>
+      <Button title="Sign Out" onPress={handleSignOut} />
     </ThemedView>
   )
 }
