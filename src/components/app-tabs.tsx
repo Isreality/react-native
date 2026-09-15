@@ -1,16 +1,16 @@
-import { NativeTabs as OriginalNativeTabs, Icon, Badge, Label } from 'expo-router/unstable-native-tabs';
+import { NativeTabs, Icon, Badge, Label } from 'expo-router/unstable-native-tabs';
 import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 
-type NativeTabsType = typeof OriginalNativeTabs & {
-  Trigger: React.ComponentType<{ name: string; children?: React.ReactNode }> & {
-    Label: React.ComponentType<{ children: React.ReactNode }>;
-    Icon: React.ComponentType<{ src: any; renderingMode?: 'template' | 'original' }>;
-  };
-};
+// type NativeTabsType = typeof OriginalNativeTabs & {
+//   Trigger: React.ComponentType<{ name: string; children?: React.ReactNode }> & {
+//     Label: React.ComponentType<{ children: React.ReactNode }>;
+//     Icon: React.ComponentType<{ src: any; renderingMode?: 'template' | 'original' }>;
+//   };
+// };
 
-const NativeTabs = OriginalNativeTabs as NativeTabsType;
+// const NativeTabs = OriginalNativeTabs as NativeTabsType;
 
 export default function AppTabs() {
   const scheme = useColorScheme();
@@ -25,7 +25,7 @@ export default function AppTabs() {
       iconColor={{ default: '#817c7c', selected: '#E60023' }}
       labelStyle={{ selected: { color: colors.activeText } }}>
       <NativeTabs.Trigger name="home" options={{ title: 'Home'}}>
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <Label>Home</Label>
         <Icon
           src={require('@/assets/images/tabIcons/home.png')}
           // renderingMode="template"
@@ -33,7 +33,7 @@ export default function AppTabs() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="order" options={{ title: 'Order'}}>
-        <NativeTabs.Trigger.Label>Order</NativeTabs.Trigger.Label>
+        <Label>Order</Label>
         <Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           // renderingMode="template"
@@ -41,7 +41,7 @@ export default function AppTabs() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="cart" options={{ title: 'Cart'}}>
-        <NativeTabs.Trigger.Label>Cart</NativeTabs.Trigger.Label>
+        <Label>Cart</Label>
         <Badge>9+</Badge>
         <Icon
           src={require('@/assets/images/tabIcons/explore.png')}
@@ -50,7 +50,7 @@ export default function AppTabs() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="profile" options={{ title: 'Profile'}}>
-        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+        <Label>Profile</Label>
         <Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           // renderingMode="template"

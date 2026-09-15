@@ -50,6 +50,12 @@ const Login = () => {
       return;
     }
 
+    // Validate Password Length
+    if (password.length < 8) {
+      Alert.alert('Validation Error', 'Password must be at least 8 characters long');
+      return;
+    }
+
     if (password !== confirmPassword) {
       Alert.alert('Passwords do not match');
       return;
@@ -60,7 +66,7 @@ const Login = () => {
       await signUp(name, email.trim(), phone.trim(), password, confirmPassword);
       router.replace('/home');
       Alert.alert('Success', 'Account created successfully!', [
-        { text: 'OK', onPress: () => router.replace('/(tabs)/home') }
+        { text: 'OK', onPress: () => router.replace('/home') }
       ]);
     } catch (error: any) {
       Alert.alert('Sign Up Error', error?.message || 'Something went wrong. Please try again.');
@@ -119,19 +125,15 @@ const Login = () => {
                 onChangeText={setPassword}
                 value={password}
               />
+
               <TouchableOpacity
-                style={{ position: 'absolute', right: 16, bottom: 14 }}
+                style={{ position: 'absolute', right: 16, bottom: 16 }}
                 onPress={() => setIsPasswordSecure(!isPasswordSecure)}
               >
-                {/* <Iconify
-                  icon={isPasswordSecure ? 'mdi:eye-off' : 'mdi:eye'}
-                  size={22}
-                  color="#808080"
-                /> */}
                 {isPasswordSecure ? (
-                  <EyeOff stroke="#808080" size={22} />
+                  <EyeOff stroke="#c4c4c4" size={20} />
                 ) : (
-                  <Eye stroke="#808080" size={22} />
+                  <Eye stroke="#c4c4c4" size={20} />
                 )}
               </TouchableOpacity>
             </View>
@@ -145,19 +147,15 @@ const Login = () => {
                 onChangeText={setConfirmPassword}
                 value={confirmPassword}
               />
+
               <TouchableOpacity
-                style={{ position: 'absolute', right: 16, bottom: 14 }}
+                style={{ position: 'absolute', right: 16, bottom: 16 }}
                 onPress={() => setIsConfirmPasswordSecure(!isConfirmPasswordSecure)}
               >
-                {/* <Iconify
-                  icon={isConfirmPasswordSecure ? 'mdi:eye-off' : 'mdi:eye'}
-                  size={22}
-                  color="#808080"
-                /> */}
                 {isPasswordSecure ? (
-                  <EyeOff stroke="#808080" size={22} />
+                  <EyeOff stroke="#c4c4c4" size={20} />
                 ) : (
-                  <Eye stroke="#808080" size={22} />
+                  <Eye stroke="#c4c4c4" size={20} />
                 )}
               </TouchableOpacity>
             </View>

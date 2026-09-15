@@ -7,7 +7,6 @@ import { Stack, useRouter } from 'expo-router';
 import { useFonts } from "expo-font";
 import { useEffect } from 'react';
 
-// 1. Import your AuthProvider here
 import { AuthProvider, useAuth } from '@/context/AuthProvider'; 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import "../../global.css"
@@ -30,7 +29,7 @@ function RootNavigation() {
 
     if (loading) {
         return (
-            <View className="flex-1 justify-center items-center">
+            <View className="flex-1 justify-center items-center bg-background dark:bg-background-dark">
                 <ActivityIndicator color={"blue"} size={"large"} />
             </View>
         );
@@ -39,7 +38,6 @@ function RootNavigation() {
     return null; 
 }
 
-// fonts, and dark mode theme
 function RouteLayoutContent() {
   const { colorScheme, setColorScheme } = useColorScheme();
   const systemDeviceScheme = useDeviceColorScheme();
@@ -70,7 +68,6 @@ function RouteLayoutContent() {
   return (
     <View className={`flex-1 ${colorScheme === 'dark' ? 'dark' : ''}`}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {/* Inside AuthProvider, useAuth can now be safely called here */}
         <RootNavigation />
         
         <AnimatedSplashOverlay />
@@ -97,39 +94,21 @@ function RouteLayoutContent() {
   );
 }
 
-// 3. Export this wrapper component as default so Expo Router sets up the context first
-export default function RouteLayout() {
+const RouteLayout = () => {
     return (
         <AuthProvider>
             <RouteLayoutContent />
         </AuthProvider>
     );
-}
+};
+
+RouteLayout.displayName = 'RouteLayout';
+RouteLayoutContent.displayName = 'RouteLayoutContent';
+RootNavigation.displayName = 'RootNavigation';
+
+export default RouteLayout;
 
 
 
-  // return (
-  //   <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-  //     <AnimatedSplashOverlay />
-  //     <StatusBar style='auto'/>
-  //     <Stack>
-  //       <Stack.Screen name='index' options={{ headerShown: false }}/>
-  //       <Stack.Screen name='(auth)' options={{ headerShown: false }}/>
-  //       <Stack.Screen name='(tabs)' options={{ headerShown: false }}/>
-  //       <Stack.Screen
-  //         name="modal"
-  //         options={{
-  //           presentation: 'card',
-  //           sheetAllowedDetents: [0.25, 0.5, 1],
-  //           sheetInitialDetentIndex: 0,
-  //           sheetGrabberVisible: true,
-  //           sheetCornerRadius: 24,
-  //           sheetLargestUndimmedDetentIndex: 1,
-  //         }}
-  //       />        
-  //     </Stack>
-      
-  //   </ThemeProvider>
-    
-  // );
+
 

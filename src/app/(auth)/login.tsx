@@ -59,30 +59,28 @@ const Login = () => {
 
 
           {/* Password */}
-          <ThemedTextInput
-            label="Password"
-            placeholder="Enter password"
-            secureTextEntry={isPasswordSecure} 
-            onChangeText={setPassword}
-            value={password}
-          />
+          <View className="w-full relative">
+            <ThemedTextInput
+              label="Password"
+              placeholder="Enter password"
+              secureTextEntry={isPasswordSecure} 
+              onChangeText={setPassword}
+              value={password}
+            />
 
-          {/* Iconify Toggle Button */}
-          <TouchableOpacity
-            style={{ position: 'absolute', right: 40, top: 210 }}
-            onPress={() => setIsPasswordSecure(!isPasswordSecure)}
-          >
-            {/* <Iconify
-              icon={isPasswordSecure ? 'mdi:eye-off' : 'mdi:eye'}
-              size={24}
-              color="#808080"
-            /> */}
-            {isPasswordSecure ? (
-              <EyeOff stroke="#808080" size={22} />
-            ) : (
-              <Eye stroke="#808080" size={22} />
-            )}
-          </TouchableOpacity>
+            {/* Iconify Toggle Button */}
+            <TouchableOpacity
+              style={{ position: 'absolute', right: 16, top: 44 }}
+              onPress={() => setIsPasswordSecure(!isPasswordSecure)}
+            >
+              {isPasswordSecure ? (
+                <EyeOff stroke="#c4c4c4" size={20} />
+              ) : (
+                <Eye stroke="#c4c4c4" size={20} />
+              )}
+            </TouchableOpacity>
+          </View>
+          
 
           <ThemedButton onPress={handleSubmit} className="" text="Login"/>
         
