@@ -3,15 +3,15 @@ import React from 'react'
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-const Cart = () => {
+const Favourite = () => {
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type='title' style={styles.title}>Cart</ThemedText>
+      <ThemedText type='title' style={styles.title}>Favourite</ThemedText>
     </ThemedView>
   )
 }
 
-export default Cart
+export default Favourite
 
 const styles = StyleSheet.create({
 container: {

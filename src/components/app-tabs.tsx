@@ -1,16 +1,7 @@
 import { NativeTabs, Icon, Badge, Label } from 'expo-router/unstable-native-tabs';
 import { useColorScheme } from 'react-native';
-
 import { Colors } from '@/constants/theme';
 
-// type NativeTabsType = typeof OriginalNativeTabs & {
-//   Trigger: React.ComponentType<{ name: string; children?: React.ReactNode }> & {
-//     Label: React.ComponentType<{ children: React.ReactNode }>;
-//     Icon: React.ComponentType<{ src: any; renderingMode?: 'template' | 'original' }>;
-//   };
-// };
-
-// const NativeTabs = OriginalNativeTabs as NativeTabsType;
 
 export default function AppTabs() {
   const scheme = useColorScheme();
@@ -23,47 +14,43 @@ export default function AppTabs() {
       indicatorColor={colors.backgroundElement}
       tintColor={colors.iconColorFocused}
       iconColor={{ default: '#817c7c', selected: '#E60023' }}
-      labelStyle={{ selected: { color: colors.activeText } }}>
+      labelStyle={{ selected: { color: colors.activeText } }}
+    >
+
+      {/* Home Tab */}  
       <NativeTabs.Trigger name="home" options={{ title: 'Home'}}>
         <Label>Home</Label>
         <Icon
-          src={require('@/assets/images/tabIcons/home.png')}
-          // renderingMode="template"
+          src={require('@/assets/images/tabIcons/home-filled.png')}
         />
       </NativeTabs.Trigger>
 
+      {/* Favourite Tab */}
+      <NativeTabs.Trigger name="favourite" options={{ title: 'Favourite'}}>
+        <Label>Favourite</Label>
+        <Icon
+          src={require('@/assets/images/tabIcons/heart.png')}
+        />
+      </NativeTabs.Trigger>
+
+      {/* Order Tab */}
       <NativeTabs.Trigger name="order" options={{ title: 'Order'}}>
         <Label>Order</Label>
+        {/* <Badge>9+</Badge> */}
         <Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          // renderingMode="template"
+          src={require('@/assets/images/tabIcons/order.png')}
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="cart" options={{ title: 'Cart'}}>
-        <Label>Cart</Label>
-        <Badge>9+</Badge>
-        <Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          // renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-
+      {/* Profile Tab */}
       <NativeTabs.Trigger name="profile" options={{ title: 'Profile'}}>
         <Label>Profile</Label>
         <Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          // renderingMode="template"
+          src={require('@/assets/images/tabIcons/profile.png')}
         />
       </NativeTabs.Trigger>
-
-      {/* <NativeTabs.Trigger name="search" role='search' options={{ title: 'Search'}}>
-        <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
-        <Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          // renderingMode="template"
-        />
-      </NativeTabs.Trigger> */}
     </NativeTabs>
   );
 }
+
+AppTabs.displayName = 'AppTabs';
