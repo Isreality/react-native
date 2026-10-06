@@ -3,7 +3,6 @@ import { Pressable, View, Button, Text, useColorScheme, Keyboard, TouchableOpaci
 import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
-// import { Iconify } from '@huymobile/react-native-iconify';
 import { Eye, EyeOff } from 'lucide-react-native';
 
 import { useAuth } from '@/context/AuthProvider';
@@ -21,9 +20,9 @@ const Login = () => {
   const [isPasswordSecure, setIsPasswordSecure] = useState(true);
   const router = useRouter();
 
-
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? 'light'];
+  const systemScheme = useColorScheme();
+  const scheme = systemScheme === 'dark' ? 'dark' : 'light';
+  const colors = Colors[scheme];
 
   const { signIn } = useAuth() || {};
 
@@ -42,10 +41,10 @@ const Login = () => {
   };
 
   return (
-    <ThemedView className="flex-1 bg-background dark:bg-background-dark">
+    <ThemedView className="flex-1 px-4 bg-background dark:bg-background-dark mt-8">
       <Pressable className="flex-1" onPress={Keyboard.dismiss}>
-        <SafeAreaView className="flex-1 px-6 items-center gap-4 max-w-[900px] w-full mt-10">
-          <Text className="font-satoshi-bold text-primary text-center text-2xl mb-2">
+        <SafeAreaView className="flex-1 items-center justify-center gap-4 max-w-225 w-full">
+          <Text className="font-satoshi-bold text-primary text-center text-2xl mb-4">
             Sign In
           </Text>
 
@@ -82,13 +81,10 @@ const Login = () => {
           </View>
           
 
-          <ThemedButton onPress={handleSubmit} className="" text="Login"/>
+          <ThemedButton onPress={handleSubmit}  text="Login"/>
         
           <Text 
-            style={{ 
-              color: colors.text 
-            }} 
-            className="font-satoshi-medium text-lg">
+            className="font-satoshi-medium text-text dark:text-text-dark text-lg text-center mt-2">
             Don't have an account?{" "} 
             <Link href="/register" className='font-satoshi-bold text-primary'>Create Account</Link>
           </Text>

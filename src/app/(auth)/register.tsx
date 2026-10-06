@@ -3,7 +3,6 @@ import { Pressable, View, Button, Text, useColorScheme, Keyboard, TouchableOpaci
 import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
-// import { Iconify } from '@huymobile/react-native-iconify';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { useAuth } from '@/context/AuthProvider';
 import { useRouter } from 'expo-router';
@@ -25,11 +24,12 @@ const Login = () => {
   const [isConfirmPasswordSecure, setIsConfirmPasswordSecure] = useState(true);
   const router = useRouter();
 
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? 'light'];
+  const systemScheme = useColorScheme();
+  const scheme = systemScheme === 'dark' ? 'dark' : 'light';
+  const colors = Colors[scheme];
 
   const { signUp } = useAuth() || {};
-
+  
   const handleSubmit = async () => {
     if (!name || !email || !phone || !password || !confirmPassword) {
       Alert.alert('Please fill in all fields');
@@ -74,7 +74,7 @@ const Login = () => {
   };
 
   return (
-    <ThemedView className="flex-1 bg-background dark:bg-background-dark">
+    <ThemedView className="flex-1 px-4 bg-background dark:bg-background-dark mt-8">
       <KeyboardAwareScrollView 
         className="flex-1"
         contentContainerStyle={{ flexGrow: 1 }}
@@ -83,7 +83,7 @@ const Login = () => {
         keyboardShouldPersistTaps="handled"
       >
         <Pressable className="flex-1" onPress={Keyboard.dismiss}>
-          <SafeAreaView className="flex-1 px-6 items-center gap-4 max-w-[900px] w-full mt-10">
+          <SafeAreaView className="flex-1 items-center justify-center gap-4 max-w-225 w-full">
             <Text className="font-satoshi-bold text-primary text-center text-2xl mb-2">
               Create an Account
             </Text>
@@ -127,7 +127,7 @@ const Login = () => {
               />
 
               <TouchableOpacity
-                style={{ position: 'absolute', right: 16, bottom: 16 }}
+                style={{ position: 'absolute', right: 16, bottom: 33 }}
                 onPress={() => setIsPasswordSecure(!isPasswordSecure)}
               >
                 {isPasswordSecure ? (
@@ -149,7 +149,7 @@ const Login = () => {
               />
 
               <TouchableOpacity
-                style={{ position: 'absolute', right: 16, bottom: 16 }}
+                style={{ position: 'absolute', right: 16, bottom: 33 }}
                 onPress={() => setIsConfirmPasswordSecure(!isConfirmPasswordSecure)}
               >
                 {isPasswordSecure ? (
@@ -163,10 +163,7 @@ const Login = () => {
             <ThemedButton onPress={handleSubmit} className="" text="Sign Up"/>
           
             <Text 
-              style={{ 
-                  color: colors.text 
-              }}
-              className="font-satoshi-medium text-lg">
+              className="font-satoshi-medium text-text dark:text-text-dark text-lg text-center mt-2">
               Already have an account?{" "} 
               <Link href="/login" className='font-satoshi-bold text-primary'>Sign In</Link>
             </Text>

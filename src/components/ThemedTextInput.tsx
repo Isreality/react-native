@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, TextInput, TextInputProps, useColorScheme } from 'react-native'
 import React from 'react'
-
 import { Colors } from '@/constants/theme';
-// const { Colors } = require('./constants/colors');
 
 
 interface ThemedTextInputProps extends TextInputProps {
@@ -10,18 +8,19 @@ interface ThemedTextInputProps extends TextInputProps {
 }
 
 const ThemedTextInput: React.FC<ThemedTextInputProps> = ({ style, label, ...props }) => {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? 'light'];
-  const placeholderColor = colorScheme === 'dark' ? '#666666' : '#c4c4c4';
+  const systemScheme = useColorScheme();
+  const scheme = systemScheme === 'dark' ? 'dark' : 'light';
+  const colors = Colors[scheme];
+  const placeholderColor = systemScheme === 'dark' ? '#666666' : '#c4c4c4';
 
   return (
-    <View style={{ width: '100%', flexDirection: 'column', gap: 10 }}>
+    <View style={{ width: '100%', flexDirection: 'column', gap: 10, marginBottom: 15 }}>
       
       {label && (
         <Text 
         style={{ 
           fontFamily: 'Satoshi-Medium', 
-          fontSize: 14, 
+          fontSize: 16, 
           color: colors.text 
         }}
         >

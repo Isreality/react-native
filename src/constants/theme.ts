@@ -6,6 +6,7 @@ export const Colors = {
   light: {
     primary: '#E60023',
     text: '#646464',
+    buttonText: '#ffffff',
     activeText: '#Eb1c26',
     background: '#ffffff',
     backgroundElement: '#F0F0F3',
@@ -18,6 +19,7 @@ export const Colors = {
   dark: {
     primary: '#E60023',
     text: '#ffffff',
+    buttonText: '#ffffff',
     activeText: '#E60023',
     background: '#000000',
     backgroundElement: '#212225',
